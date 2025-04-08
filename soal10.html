@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Hasil Kembalian:</h2>
+    <div id="hasil"></div>
+  
+    <script>
+      function hitungKembalian(pembayaran, belanja) {
+        let kembalian = pembayaran - belanja;
+        const pecahan = [100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100];
+        const hasil = {};
+  
+        for (let uang of pecahan) {
+          if (kembalian >= uang) {
+            let jumlah = Math.floor(kembalian / uang);
+            hasil[uang.toString()] = jumlah;
+            kembalian -= uang * jumlah;
+          }
+        }
+  
+        return hasil;
+      }
+  
+      // Contoh data
+      const kasus = [
+        { bayar: 10000, belanja: 7500 },
+        { bayar: 5000, belanja: 1100 },
+        { bayar: 178000, belanja: 90500 }
+      ];
+  
+      const hasilDiv = document.getElementById("hasil");
+  
+      kasus.forEach((item, index) => {
+        const hasilKembalian = hitungKembalian(item.bayar, item.belanja);
+        hasilDiv.innerHTML += `<p><strong>Kasus ${index + 1}</strong>: ${JSON.stringify(hasilKembalian)}</p>`;
+      });
+    </script>
+    
+</body>
+</html>

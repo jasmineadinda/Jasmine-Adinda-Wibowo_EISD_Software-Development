@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>JMK Restoran</title>
+</head>
+<body>
+    <h2>Menghitung Tagihan</h2>
+    <div id="hasil"></div>
+
+    <script>
+        const menu = {
+            "Ayam Goreng Krispi": { type: "makanan", harga: 15000 },
+            "Ayam Puk Puk": { type: "makanan", harga: 13000 },
+            "Ayam Bakar": { type: "makanan", harga: 20000 },
+            "Es teh": { type: "minuman", harga: 5000 },
+            "Es Jeruk": { type: "minuman", harga: 7000 }
+        };
+
+        function hitungTagihan(pesanan) {
+            let subtotal = 0;
+
+            for (const item in pesanan) {
+                const jumlah = pesanan[item];
+                const { type, harga } = menu[item];
+                const pajakPerItem = type === "makanan" ? 0.05 : 0.03;
+                const hargaDenganPajak = harga + (harga * pajakPerItem);
+                subtotal += hargaDenganPajak * jumlah;
+            }
+
+            const pajakTransaksi = 0.15;
+            const total = subtotal + (subtotal * pajakTransaksi);
+
+            return Math.round(total); // Pembulatan ke bilangan bulat terdekat
+        }
+
+        // Pesanan masing-masing sahabat
+        const rehan = {
+            "Ayam Bakar": 2,
+            "Es teh": 1
+        };
+
+        const amba = {
+            "Ayam Puk Puk": 1,
+            "Es teh": 3
+        };
+
+        const faiz = {
+            "Ayam Goreng Krispi": 1,
+            "Ayam Puk Puk": 1,
+            "Ayam Bakar": 1,
+            "Es teh": 1,
+            "Es Jeruk": 1
+        };
+
+        const hasil = document.getElementById("hasil");
+        hasil.innerHTML = `
+            <p><strong>Rehan:</strong> Rp ${hitungTagihan(rehan).toLocaleString()}</p>
+            <p><strong>Amba:</strong> Rp ${hitungTagihan(amba).toLocaleString()}</p>
+            <p><strong>Faiz:</strong> Rp ${hitungTagihan(faiz).toLocaleString()}</p>
+        `;
+    </script>
+</body>
+</html>

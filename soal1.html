@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ratings Summary</h1>
+    <div id="hasil"></div>
+    <script>
+        function getRatings(ratings) {
+            const highest_rating = Math.max(...ratings);
+            const lowest_rating = Math.min(...ratings);
+            const average = (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1);
+            return [highest_rating, lowest_rating, parseFloat(average)];
+        };
+
+        const ratingsOne = [4.5, 2.0, 1.5, 3.0, 2.5, 4.0, 5.0, 3.5, 2.0, 1.0];
+        const ratingsTwo = [5,4,2.5,5,3.6,1.1,3.6,4,4.2,1.5];
+
+        const [highestOne, lowestOne, averageOne] = getRatings(ratingsOne);
+        const [highestTwo, lowestTwo, averageTwo] = getRatings(ratingsTwo);
+        
+        document.getElementById('hasil').innerHTML = 
+            `[4.5, 2.0, 1.5, 3.0, 2.5, 4.0, 5.0, 3.5, 2.0, 1.0] = [${highestOne}, ${lowestOne}, ${averageOne}] <br> 
+            [5,4,2.5,5,3.6,1.1,3.6,4,4.2,1.5] = [${highestTwo}, ${lowestTwo}, ${averageTwo}]`;
+    </script>
+</body>
+</html>

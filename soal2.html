@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Deteksi Palindrom</h1>
+    <div id="hasil"></div>
+
+    <script>
+        function cekPalindrom(kalimat) {
+            const clean = kalimat.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const reversed = clean.split('').reverse().join('');
+            return clean === reversed ? "eureeka!" : "suka blyat";
+        }
+        
+        const kalimatList = [
+            "Angsa",
+            "KataK",
+            "kasur empuk",
+            "Aku Suka Kamu",
+            "Ibu Ratna antar ubi"
+        ];
+
+        kalimatList.forEach(kalimat => {
+            const hasil = cekPalindrom(kalimat);
+            document.getElementById("hasil").innerHTML += `"${kalimat}" = ${hasil} <br>`;
+        });
+
+    </script>
+</body>
+</html>
